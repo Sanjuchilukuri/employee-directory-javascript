@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../assets/tezoLogo.svg" type="image/x-icon"/>
+    <link rel="stylesheet" href="../styles/index.css" />
+    <title>Tezo</title>
+  </head>
+  <body id="body">    
+    <div class="container" id="container">
+      <!-- Sidebar Section Starts -->
+      <div class="aside-wrapper">
+        <aside class="sidebar" id="aside">
+          <!-- icon section starts -->
+          <div class="logo">
+            <img id="companyLogo" src="../assets/tezoLogo.svg" alt="Logo-image" />
+            <img
+              id="sidebarIcon"
+              src="../assets/sidebar-icon.svg"
+              alt="sidebar icon"
+              onclick="SidebarVisibility()"
+            />
+          </div>
+          <!-- icon section ends -->
+  
+          <!-- sidenav-content starts -->
+          <div class="sidenav-content">
+            <div>
+              <!-- dashboard items section starts -->
+              <section class="sidenav-all">
+                <p>ALL</p>
+                <div class="sidenav-all-dashboard">
+                  <div class="all-dashboard-item">
+                    <div>
+                      <img src="../assets/dashboard.svg" alt="dashboard image" />
+                      <p>Dashboard</p>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="sidenav-all-employee">
+                  <div class="all-employees-item" onclick="redirectWindow()">
+                    <div>
+                      <img
+                        src="../assets/employees-colored.svg"
+                        alt="employees image"
+                      />
+                      <p>Employees</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!-- dashboard items section ends  -->
+  
+              <!-- sidenav-role section starts -->
+              <section class="sidenav-role">
+                <p id="sideNavRoleText">ROLE/USER MANAGEMENT</p>
+                <a href="../pages/roles.html">
+                  <div class="user-roles">
+                    <img src="../assets/roles-homepage.svg" alt="roles image" />
+                    <p>Roles</p>
+                  </div>
+                </a>
+                <div class="user-roles">
+                  <img src="../assets/access-rights.svg" alt="user roles image" />
+                  <p>Access Rights</p>
+                </div>
+              </section>
+              <!-- sidenav-role section ends-->
+            </div>
+  
+            <!-- Update section starts -->
+            <section class="sidenav-update">
+              <p>Install new update 2.3.1A</p>
+              <p class="update-description">
+                Allow to launch the new update for the AD application
+              </p>
+              <div>
+                <button>Dismiss</button>
+                <button>Accept</button>
+              </div>
+            </section>
+            <!-- Update section ends -->
+          </div>
+  
+          <!-- sidenav-content ends -->
+        </aside>
+      </div>
+      <!-- Sidebar section ends -->
+
+      <!-- Main section starts -->
+      <main id="main">
+        <!-- header Section starts -->
+        <header>
+          <div class="header-search-bar">
+            <input type="text" id="searchBar" onkeyup="updateSearchFilter(event)" placeholder="Search (ctrl+/)" />
+          </div>
+          <div class="header-icons">
+            <img src="../assets/language.png" alt="language image" />
+            <img src="../assets/mode.png" alt="view image" />
+            <img src="../assets/theme.png" alt="theme image" />
+            <img src="../assets/notification.png" alt="notofications image" />
+            <img src="../assets/admin.png" alt="admin image" />
+            <div class="user-info">
+              <p>John Abraham</p>
+              <p class="role">Admin</p>
+            </div>
+          </div>
+        </header>
+        <!-- header Section ends -->
+
+        <!-- Main content section starts -->
+        <div class="main-content" id="mainContent">
+          <!-- Add employee section starts -->
+          <section class="add-employee">
+            <div>
+              <h2>Employees</h2>
+              <p>
+                Find all of your company's employee accounts and their
+                associated roles
+              </p>
+            </div>
+            <div>
+              <button class="export-btn" onclick="exportDataToExcel()">
+                EXPORT
+              </button>
+              <button class="add-btn" onclick="displayAddEmployeeForm()">
+                ADD EMPLOYEE
+              </button>
+            </div>
+          </section>
+          <!-- Add employee section ends -->
+
+          <!-- options section starts -->
+          <section class="options">
+            <ul id="alphabetsWrapper">
+              <li><img id="alphabetsFilter" src="../assets/filter-black.svg" alt="filter-icon" onclick="turnOffAlphabetFilter(this)"/></li>
+            </ul>
+          </section>
+          <!-- options section ends -->
+
+          <!-- filter section starts -->
+          <section class="filter" id="filter">
+            <div class="filter-options">
+              <p>Filter</p>
+              <img src="../assets/sort-descending.png" alt="sorting icon" />
+              <select name="status" id="status" onchange="updateButtonState(),toggleSelectTagState(this)"> </select>
+              <select name="location" id="Location" onchange="updateButtonState(),toggleSelectTagState(this)"></select>
+              <select name="department" id="Department" onchange="updateButtonState(),toggleSelectTagState(this)"></select>
+            </div>
+            <div>
+              <button class="reset-btn" id="resetBtn" onclick="resetAllFilters()" disabled>Reset</button>
+              <button class="apply-btn" id="applyBtn" onclick ="updateSelectFilters()" disabled>Apply</button>
+            </div>
+          </section>
+          <!-- filter section ends -->
+
+          <!-- user-data section starts -->
+          <section class="user-data">
+            <div class="delete">
+              <div>
+                <img
+                  src="../assets/arrow-left-down.png"
+                  alt="arrow-left-down"
+                />
+                <button id="deleteBtn" onclick="deleteSelectedEmployeeRecords()" disabled>
+                  Delete
+                </button>
+              </div>
+              <img src="../assets/table-icon.png" alt="table icon" />
+            </div>
+
+            <div style="overflow-x: scroll">
+              <table id="table">
+                <thead>
+                  <tr>
+                    <td>
+                      <input
+                        id="selectAll"
+                        type="checkbox"
+                        name="select-all"
+                        onclick="toggleAllCheckboxes(this)"
+                      />
+                    </td>
+                    <th>
+                      <div class="heading-wrapper" >
+                        <button class="transparent-btn" onclick="tableSorting(this)" id="user">USER</button>
+                        <div class="icon">
+                          <i class="fa-solid fa-chevron-up"></i>
+                          <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="heading-wrapper" >
+                        <button class="transparent-btn" onclick="tableSorting(this)" id="locations">LOCATION</button>
+                        <div class="icon">
+                          <i class="fa-solid fa-chevron-up"></i>
+                          <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="heading-wrapper" >
+                        <button class="transparent-btn" onclick="tableSorting(this)" id="departments">DEPARTMENT</button>
+                        <div class="icon">
+                          <i class="fa-solid fa-chevron-up"></i>
+                          <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="heading-wrapper" >
+                        <button class="transparent-btn" onclick="tableSorting(this)" id="role">ROLE</button>
+                        <div class="icon">
+                          <i class="fa-solid fa-chevron-up"></i>
+                          <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="heading-wrapper" >
+                        <button class="transparent-btn" onclick="tableSorting(this)" id="empNo">EMP NO</button>
+                        <div class="icon">
+                          <i class="fa-solid fa-chevron-up"></i>
+                          <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="heading-wrapper" >
+                        <button class="transparent-btn" onclick="tableSorting(this)" id="status">STATUS</button>
+                        <div class="icon">
+                          <i class="fa-solid fa-chevron-up"></i>
+                          <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="heading-wrapper" >
+                        <button class="transparent-btn" onclick="tableSorting(this)" id="joinDt">JOIN DT</button>
+                        <div class="icon">
+                          <i class="fa-solid fa-chevron-up"></i>
+                          <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                      </div>
+                    </th>
+                    <th>...</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+              </table>
+            </div>
+          </section>
+          <!-- user-data section ends -->
+        </div>
+
+        <div class="employee-model" id="employeeModel">
+          <h2>Add Employee</h2>
+          <section>
+            <input type="file" id="file" onchange="updatFormImage(event)" />
+            <div class="image-section">
+              <label for="file" >
+                <img
+                  id="img"
+                  src="../assets/profiles/blank-profile-picture.webp"
+                  alt="Profile picture"
+                  accept="image/*"
+                  
+                />
+                <p>Edit</p>
+              </label>
+            </div>
+
+            <form id="form" onsubmit="return onSubmitEmployee(event)">
+              <div>
+                <p>Personal Information</p>
+                <div>
+                  <label for="empno"> Emp No </label>
+                  <input
+                    type="text"
+                    id="empno"
+                    name="empno"
+                    placeholder="Text"
+                    pattern="[A-Z]{2}[0-9]*"
+                  />
+                  <span id="empnoError" class="error">This filed is required</span>
+                </div>
+
+                <div class="wrapper">
+                  <div>
+                    <label for="firstname"> Firstname </label>
+                    <input
+                      type="text"
+                      id="firstname"
+                      name="firstname"
+                      placeholder="firstName"
+                      pattern="[A-Za-z]{3}[A-Za-z]*"
+                    />
+                    <span class="error">This filed is required</span>
+                  </div>
+                  <div>
+                    <label for="lastname"> Lastname </label>
+                    <input
+                      type="text"
+                      id="lastname"
+                      name="lastname"
+                      placeholder="LastName"
+                      pattern="[A-Za-z]{3}[A-Za-z]*"
+                    />
+                    <span class="error">This filed is required</span>
+                  </div>
+                  <div>
+                    <label for="dob"> Date of Birth </label>
+                    <input
+                      placeholder="Select"
+                      type="text"
+                      onfocus="(this.type='date')"
+                      onblur="(this.type='text')"
+                      id="dob"
+                      name="dob"
+                    />
+                  </div>
+                </div>
+                <div class="wrapper">
+                  <div>
+                    <label for="mail"> Email Id </label>
+                    <input
+                      type="email"
+                      id="mail"
+                      placeholder="joe.j@technovert.com"
+                      pattern="[a-z 0-9]+[.]{0,1}[a-z 0-9]+@[a-z]*.com"
+                      name="mail"
+                    />
+                    <span class="error">This filed is required</span>
+                  </div>
+                  <div>
+                    <label for="phno"> Mobile Number </label>
+                    <input
+                      type="tel"
+                      id="phno"
+                      name="phno"
+                      placeholder="0000000000"
+                      pattern="[1-9][0-9]{9}"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="emp-inf-heading">Employee Information</p>
+                <div class="wrapper">
+                  <div>
+                    <label for="joining"> Joining Date </label>
+                    <input
+                      value="2024-02-20"
+                      placeholder="20-02-2024"
+                      type="text"
+                      name="joining"
+                      onfocus="(this.type='date')"
+                      onblur="(this.type='text')"
+                      id="joining"
+                    />
+                    <span  class="error">This filed is required</span>
+                  </div>
+                  <div>
+                    <label for="location"> Location </label>
+                    <select onchange="toggleSelectTagState(this)" id="location" name="location"></select>
+                  </div>
+                </div>
+                <div class="wrapper">
+                  <div>
+                    <label for="jobTitle"> Job Title </label>
+                    <select onchange="toggleSelectTagState(this)" id="jobTitle" name="jobTitle"></select>
+                  </div>
+                  <div>
+                    <label for="department"> Department </label>
+                    <select onchange="toggleSelectTagState(this)" id="department" name="department"></select>
+                  </div>
+                </div>
+                <div class="wrapper">
+                  <div>
+                    <label for="manager"> Assign Manager </label>
+                    <select onchange="toggleSelectTagState(this)" id="manager" name="manager"></select>
+                  </div>
+                  <div>
+                    <label for="project"> Assign Project </label>
+                    <select onchange="toggleSelectTagState(this)" id="project" name="project"></select>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <button type="reset" onclick="redirectWindow()">Cancel</button>
+                <button id="formSubmitBtn" type="submit">Add Employee</button>
+              </div>
+            </form>
+          </section>
+        </div>
+        <!-- Main content section ends -->
+      </main>
+    </div>
+    <script src="../script/storage.js"></script>
+    <script  src="../script/index.js"></script>
+    <script  src="../script/addEmp.js"></script>
+  </body>
+</html>

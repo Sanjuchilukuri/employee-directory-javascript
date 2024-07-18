@@ -1,0 +1,103 @@
+@import url(../styles/common.css);
+.active-roles {
+  margin-top: 1rem;
+  background-color: #fde9e9;
+  border-radius: .5rem;
+  p {
+    color: #f44848 !important;
+  }
+}
+.active-roles::after {
+  color: #f44848 !important;
+}
+.roles-wrapper {
+  position: relative;
+}
+.roles-wrapper::after {
+  content: " ";
+  position: absolute;
+  right: .5rem;
+  top: 0;
+  height: 3.06rem;
+  width: 4px;
+  border-radius: 5px 0 0 5px;
+  background-color: #f44848;
+}
+.main-content{
+  .add-employee {
+    h2 {
+      color: #4c5f71;
+      font-size: 1rem;
+      margin: .8rem 0rem;
+      font-weight: 600;
+    }
+    button{
+      padding: .7rem .5rem;
+    }
+  }
+  .role-description {
+    margin-top: .5rem;
+    h2{
+      font-size: 1rem;
+    }
+    p {
+      color: #4c5f71;
+      font-size: 0.89rem;
+    }
+  }
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    gap: 1.3rem;
+    .card {
+      width: 20.625rem;
+      padding: 1rem;
+      box-shadow: 0 0 0 2px #e6e6e6;
+      border-radius: .625rem;
+      .image-section {
+        display: flex;
+        align-items: center;
+        gap: .9375rem;
+        img {
+          height: 2.1875rem;
+          border-radius: 50%;
+        }
+        div {
+          p {
+            margin: 0;
+          }
+          p:first-child {
+            font-size: 1rem;
+          }
+          p:nth-child(2) {
+            font-size: 0.7rem;
+          }
+        }
+      }
+      .about {
+        margin-top: 1rem;
+        div {
+          margin-top: .7rem;
+          display: flex;
+          align-items: center;
+          gap: .9375rem;
+          img {
+            height: 1.25rem;
+          }
+          p {
+            margin: 0;
+          }
+        }
+      }
+      .view-detail {
+        display: flex;
+        justify-content: flex-end;
+        gap: .625rem;
+        p{
+          margin: 0;
+        }
+      }
+    }
+  }
+}
